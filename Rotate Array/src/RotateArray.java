@@ -23,12 +23,12 @@ public class RotateArray {
         int temp;
 
         for (int i = 0; i < k; i++) {
-            temp = nums[i];
-            nums[i] = nums[nums.length - k + i];
-            nums[nums.length - k + i] = temp;
+            temp = nums[nums.length - 1];
+            for (int j = nums.length - 1; j > 0; j--) {
+                nums[j] = nums[j - 1];
+            }
+            nums[0] = temp;
         }
-
-        System.out.println(Arrays.toString(nums));
     }
 
     public static void main(String[] nums) {
