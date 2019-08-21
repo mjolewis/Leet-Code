@@ -25,12 +25,12 @@ import java.util.ArrayList;
  */
 public class Solution {
     public int climbStairs(int n) {
-        //TODO: Implement permutation w/o replacement n!/(n-k)!
-        int[] result = new int[n + 2];
-
-        result[0] = 0;
+        if (n == 1) return 1;
+        // Recursive solve using Dynamic Programming
+        int[] result = new int[n + 1];
         result[1] = 1;
-        for (int i = 2; i <= n; i++) {
+        result[2] = 2;
+        for (int i = 3; i <= n; i++) {
             result[i] = result[i -1] + result[i - 2];
         }
         return result[n];
