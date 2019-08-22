@@ -19,20 +19,25 @@ public class Solution {
     public int guessNumber(int n) {
         int start = 1;
         int end = n;
-        int mid = 0;
 
         while(start <= end) {
-            mid = (start + end) / 2;
-            if (guess(mid) == -1) end = mid - 1;
-            if (guess(mid) == 0) return mid;
-            if (guess(mid) == 1) start = mid + 1;
+            int mid = start + (end - start) / 2;
+            int result = guess(mid);
+
+            if (result == 0 ) {
+                return mid;
+            } else if (result < 0) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
         }
-        return mid;
+        return -1;
     }
 
-    public int guess(int num) {
-        (int) ((Math.random() * num) + 1);
-    }
+//    public int guess(int num) {
+//        (int) ((Math.random() * num) + 1);
+//    }
 
     public static void main(String[] args) {
         Solution solution1 = new Solution();
