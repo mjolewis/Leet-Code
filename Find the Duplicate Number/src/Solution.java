@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 /**
  * Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least
@@ -21,26 +20,24 @@ import java.util.Arrays;
  */
 public class Solution {
     public int findDuplicate(int[] nums) {
-        if (nums.length == 0) return 0;
+        int tortoise = nums[0];
+        int hare = nums[0];
 
-        int[] sortedArray = new int[nums.length];
-        System.arraycopy(nums,0, sortedArray, 0, nums.length);
-        Arrays.sort(sortedArray);
-        int start = 0;
-        int mid;
-        int end = nums.length - 1;
+        // Find the intersection point of the two runners
+        do {
+            tortoise = nums[tortoise];
+            hare = nums[nums[hare]];
+        } while (tortoise != hare);
 
-        while (start < end) {
-            mid = start + (end - start) / 2;
-            if (sortedArray[mid] == sortedArray[mid + 1]) {
-                return sortedArray[mid];
-            } else if (sortedArray[mid] > sortedArray[mid - 1]) {
-                start = mid + 1;
-            } else {
-                end = mid - 1;
-            }
+        // Find the "entrance" to the cycle
+        int ptr1 = nums[0];
+        int ptr2 = tortoise;
+        while (ptr1 != ptr2) {
+            ptr1 = nums[ptr1];
+            ptr2 = nums[ptr2];
         }
-        return sortedArray[start];
+
+        return ptr1;
     }
 
     public static void main(String[] args) {
