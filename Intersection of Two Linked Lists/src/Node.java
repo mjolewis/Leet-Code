@@ -4,7 +4,6 @@ Date: 9/9/19
  */
 
 import java.util.*;
-import java.util.LinkedList;
 
 /**
  * Write a program to find the node at which the intersection of two singly linked lists begins.
